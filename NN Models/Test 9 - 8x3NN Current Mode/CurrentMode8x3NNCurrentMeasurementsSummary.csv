@@ -1,0 +1,11 @@
+Test,Output,Min,Max,Mean,Median,Std Dev,Spec,Pass/Fail
+testLibrary:CM_8x3D_NN_V2_tb:1,"value(VT(""/Vout<0>"") 0.000141)",954.4e-3,2.571,1.85,1.79,539.6e-3,,
+testLibrary:CM_8x3D_NN_V2_tb:1,"value(VT(""/Vout<1>"") 0.000141)",2.077,2.271,2.172,2.176,42.19e-3,,
+testLibrary:CM_8x3D_NN_V2_tb:1,"value(VT(""/Vout<2>"") 0.000141)",1.214,3.034,2.007,2.051,601.5e-3,,
+testLibrary:CM_8x3D_NN_V2_tb:1,"abs(((integ(IT(""/V0/PLUS"") 0 0.00015 "" "") / 0.00015) * 4.5))",706.2e-6,872.7e-6,784.8e-6,715.2e-6,78.77e-6,,
+testLibrary:CM_8x3D_NN_V2_tb:1,"abs(((integ(IT(""/R0/PLUS"") 0 0.00015 "" "") / 0.00015) * 4.5))",88.42e-6,107.8e-6,101.7e-6,107.8e-6,6.356e-6,,
+testLibrary:CM_8x3D_NN_V2_tb:1,"abs(((integ(IT(""/R1/PLUS"") 0 0.00015 "" "") / 0.00015) * 4.5))",10.18e-6,14.83e-6,12.53e-6,12.81e-6,1.1e-6,,
+testLibrary:CM_8x3D_NN_V2_tb:1,"abs(((integ(IT(""/R2/PLUS"") 0 0.00015 "" "") / 0.00015) * 4.5))",11.79e-6,16.34e-6,14.11e-6,14.47e-6,1.087e-6,,
+testLibrary:CM_8x3D_NN_V2_tb:1,"abs(((integ(IT(""/R3/PLUS"") 0 0.00015 "" "") / 0.00015) * 4.5))",392.2e-6,392.2e-6,392.2e-6,392.2e-6,572.4e-12,,
+testLibrary:CM_8x3D_NN_V2_tb:1,"abs(((integ(IT(""/R4/PLUS"") 0 0.00015 "" "") / 0.00015) * 4.5))",184.2e-6,356.9e-6,264.3e-6,184.2e-6,84.95e-6,,
+

@@ -1,0 +1,68 @@
+simulator( 'hspiceD )
+design(	 "/home/matdou01/simulation/SimpleNN_3D_tb/hspiceD/schematic/netlist/netlist")
+resultsDir( "/home/matdou01/simulation/SimpleNN_3D_tb/hspiceD/schematic" )
+modelFile( 
+    '("/projects/randd/ejis/users/matdou01/testproject/nch_t.model" "")
+)
+;Open files
+in = infile("./Test4-3DIn/XData3D.in")
+DebugOut = outfile("./Test4-3DIn/DebugOut_3D.out" "w")
+YOut = outfile("./Test4-3DIn/YData_3D.out" "w")
+;Read file and extract 3 4bit inputs, X0, X1 and X2
+STATUS = fscanf(in "%f %f %f %f %f %f %f %f %f %f %f %f" X0_b3_temp X0_b2_temp X0_b1_temp X0_b0_temp X1_b3_temp X1_b2_temp X1_b1_temp X1_b0_temp X2_b3_temp X2_b2_temp X2_b1_temp X2_b0_temp)
+x=1; counter for loops
+;begin Simulation loop
+;Condition can be either STATUS to simulate all data, or x<5 (for example) for testing.
+while(x<11
+printf("Read Line: %d \n", x)
+if(STATUS printf("******non-nil******\n") printf("******nil******\n"))
+analysis('tran ?start "0"  ?stop "50u"  ?step "10n"  )
+desVar(	  "sim_time" 50u	)
+desVar(	  "X2_b3" X2_b3_temp)
+desVar(	  "X2_b2" X2_b2_temp)
+desVar(	  "X2_b1" X2_b1_temp)
+desVar(	  "X2_b0" X2_b0_temp)
+desVar(	  "X0_b3" X0_b3_temp)
+desVar(	  "X0_b2" X0_b2_temp)
+desVar(	  "X0_b1" X0_b1_temp)
+desVar(	  "X0_b0" X0_b0_temp)
+desVar(	  "X1_b3" X1_b3_temp)
+desVar(	  "X1_b2" X1_b2_temp)
+desVar(	  "X1_b1" X1_b1_temp)
+desVar(	  "X1_b0" X1_b0_temp)
+desVar(	  "W2_b2" 0	)
+desVar(	  "W2_b1" 0	)
+desVar(	  "W2_b0" 4.5	)
+desVar(	  "W1_b2" 0	)
+desVar(	  "W1_b1" 0	)
+desVar(	  "W1_b0" 4.5	)
+desVar(	  "W0_b2" 4.5	)
+desVar(	  "W0_b1" 4.5	)
+desVar(	  "W0_b0" 4.5	)
+desVar(	  "VDD" 4.5	)
+desVar(	  "VB" 2.22	)
+desVar(	  "Tsamp" 1.6u	)
+desVar(	  "T_RST" 2u	)
+desVar(	  "T_OUT" 2u	)
+desVar(	  "TCapDiff" 40u	)
+desVar(	  "PERIOD" 50u	)
+desVar(	  "CAP" 7p	)
+option(	'TEMPDC  "25.0" 
+)
+temp( 25.0 ) 
+run()
+selectResult( 'tran )
+outputs()
+;Print output data
+;time = 7.5e-06
+;To aid debugging, add the inputs, comparator input and output to the debug file.
+fprintf(DebugOut "L,%d,X0=%1.1f,%1.1f,%1.1f,%1.1f,X1=%1.1f,%1.1f,%1.1f,%1.1f,X2=%1.1f,%1.1f,%1.1f,%1.1f\n" x X0_b3_temp X0_b2_temp X0_b1_temp X0_b0_temp X1_b3_temp X1_b2_temp X1_b1_temp X1_b0_temp X2_b3_temp X2_b2_temp X2_b1_temp X2_b0_temp)
+fprintf(DebugOut "Vcap_o=%1.3e," value(VT("/I12/I7/Vcap_o") 4.75e-05))
+fprintf(DebugOut "Vout=%1.3e\n" value(VT("/Vout_class") 4.75e-05))
+fprintf(YOut "%d\n" if((value(VT("/Vout_class") 4.75e-05)>4) 1 0))
+STATUS = fscanf(in "%f %f %f %f %f %f %f %f %f %f %f %f" X0_b3_temp X0_b2_temp X0_b1_temp X0_b0_temp X1_b3_temp X1_b2_temp X1_b1_temp X1_b0_temp X2_b3_temp X2_b2_temp X2_b1_temp X2_b0_temp)
+x=x+1
+); end of while loop
+close(in)
+close(DebugOut)
+close(YOut)

@@ -1,0 +1,9 @@
+Note to self
+
+Changing the new arch set up so that there is a Cap reference voltage of 2.13V instead of 2.25V improved accuracy to almost 89%. 
+
+Need to work out why. It seems that the difference between the outputs for score 0 is significantly more between the two bias voltages than the other two scores.
+
+Looking at the traces, it seems that there is no difference in Vcross for the negative branch (I38) of output 0 between the two bias voltages. This seems odd, especially as they both tend to close to 2.13. Should work out why.
+Note that this branch is the only one without a compensation weight (i.e. it is open...(?? check this!)
+

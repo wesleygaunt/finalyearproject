@@ -1,0 +1,20 @@
+
+The following describes the different tests used to test the Analogue MAC.
+Where there is 1 output, the class is selected (1) if the value is greater than (or equal to (?)) 0, otherwise it is not selected (0)
+If there is more than 1 output, the chosen class is the maximum value of the output vector.
+
+The model data in each folder is the matlab variable (.mat) files that give you X, y, w and b. These are all that is really needed to begin a new test.
+
+The model used for all tests is y = (w*X'+b)>=0
+
+Test 1 - 2 inputs, 1 output. Easy data, expected accuracy (Model accuracy) = 100%
+Test 2 - 2 inputs, 1 output. Harder data, Model accuracy = ?
+Test 3 - An attempt at having 2 neurons, but doesn't really make sense. There don't appear to be any new input/ output data, just weights and biases. Best to skip this test.
+Test 4 - 3 inputs, 1 output. Model accuracy is 90%. Best acheived in analogue 89%?
+Test 5 - 8 inputs, 1 output. Model Accuracy 72%
+Test 6 - 8 x N. This was an attempt to duplicate Test 5 to get multiple outputs, in order to test how parallel neurons affect each other.
+Test 7 - 8 inputs, 3 outputs. Model Accuracy 89.9%
+Test 8 - Same as Test 7, but with data for a slightly different Architecture. Sampling with a resistor (not a capacitor).
+Test 9 - Same as Test 7, but with data for new current Mode, time encoded (CMTE) input architecture.
+Test 10 - 8 inputs, 5 outputs, Model Acc = 76.7% for CMTE Arch.
+Test 11 - 8 inputs, 5 outputs, Model Acc = 76.7% for Resistive Arch.
